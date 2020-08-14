@@ -41,22 +41,32 @@ namespace Task_04
         /// <summary>
         /// Method for testing the possibility of the existence of a triangle with given parameters.
         /// </summary>
+        /// <returns>
+        /// True if it is possible.
+        /// </returns>
         public bool PossibleTriangle(double a, double b, double c)
         {
             if (a + b > c && a + c > b && b + c > a) return true;
             else return false;
         }
         /// <summary>
-        /// The method returns the perimeter of the triangle.
+        /// Perimeter.
         /// </summary>
+        /// <returns>
+        /// Perimeter of the triangle.
+        /// </returns>
         public double PerimeterTriangle(double a, double b, double c)
         {
             return a + b + c;
         }
         /// <summary>
-        /// The method returns the square of the triangle.
+        /// Square.
         /// The formula uses a semi-perimeter.
         /// </summary>
+        /// <returns>
+        /// Square of the triangle.
+        /// </returns>
+
         public double SquareTriangle(double a, double b, double c)
         {
             double p = PerimeterTriangle(a, b, c) / 2;

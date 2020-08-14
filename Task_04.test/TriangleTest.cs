@@ -1,51 +1,56 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using Task_04;
 namespace Task_04.test
 {
     [TestClass]
     public class TriangleTest
     {
+        
+
         [TestMethod()]
         public void PossibleTriangleTest()
         {
-            // Arrange
             double a = 3;
             double b = 4;
             double c = 5;
             Triangle triangle = new Triangle(a, b, c);
-
-            //// Act
-            //var 
-            //account.Debit(debitAmount);
-
-            //// Assert
-            //double actual = account.Balance;
-            //Assert.AreEqual(true, triangle.PossibleTriangle(a, b, c), "correct");
             Assert.IsTrue(triangle.PossibleTriangle(a, b, c));
+        }
 
+        //private Exception exception;
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException),
+    "Не существует треугольника с заданными параметрами")]
+        public void PossibleTriangleTestZero()
+        {
+            double a = 0;
+            double b = 0;
+            double c = 0;
+            Triangle triangle = new Triangle(a, b, c);
+        }
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException),
+    "Не существует треугольника с заданными параметрами")]
+        public void PossibleTriangleTestGreatSide()
+        {
+            double a = 100;
+            double b = 4;
+            double c = 5;
+            Triangle triangle = new Triangle(a, b, c);
         }
         [TestMethod()]
         public void PerimeterTriangleTest()
         {
-            // Arrange
             double a = 3;
             double b = 4;
             double c = 5;
             Triangle triangle = new Triangle(a, b, c);
-
-            //// Act
-            //account.Debit(debitAmount);
-
-            //// Assert
-            //double actual = account.Balance;
             Assert.AreEqual(a + b + c, triangle.PerimeterTriangle(a, b, c), 0.001, "correct");
-
-            //Assert.Fail("The expected exception was not thrown.");
         }
         [TestMethod()]
         public void SquareTriangleTest()
         {
-            // Arrange
             double a = 3;
             double b = 4;
             double c = 5;
