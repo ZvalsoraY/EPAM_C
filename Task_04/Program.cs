@@ -6,14 +6,14 @@ namespace Task_04
     {
         static void Main()
         {
-            Console.WriteLine("Hello World!");
-            double a = 3;
-            double b = 4;
-            double c = 5;
+            Console.WriteLine("Здравствуйте! Данна программа позволяет вычислять периметр и площадь треугольника.");
+            Console.WriteLine("Введите длины сторон треугольника через Enter");
+            double a = Convert.ToDouble(Console.ReadLine());
+            double b = Convert.ToDouble(Console.ReadLine());
+            double c = Convert.ToDouble(Console.ReadLine());
             Triangle triangle = new Triangle(a, b, c);
-            Console.WriteLine(triangle.SideA);
-            Console.WriteLine(triangle.SideB);
-            Console.WriteLine(triangle.SideC);
+            Console.WriteLine("Периметр треугольника равен {0}", triangle.Perimeter);
+            Console.WriteLine("Площадь треугольника равна {0}", triangle.Square);
             Console.WriteLine("Спасибо, что воспользовались нашей программой.");
             Console.ReadLine();
         }

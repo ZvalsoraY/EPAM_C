@@ -38,6 +38,14 @@ namespace Task_04
         {
             get { return c; }
         }
+        public double Perimeter
+        {
+            get { return PerimeterTriangle(a, b, c); }
+        }
+        public double Square
+        {
+            get { return SquareTriangle(a, b, c); }
+        }
         /// <summary>
         /// Method for testing the possibility of the existence of a triangle with given parameters.
         /// </summary>
