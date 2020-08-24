@@ -9,7 +9,7 @@ namespace Task_05
     /// A vector is specified by one point, that is, it has its origin at the origin.
     /// It takes 3 arguments x y z coordinates.
     /// </summary>
-    class Vector
+    public class Vector
     {
         private double x;
         private double y;
