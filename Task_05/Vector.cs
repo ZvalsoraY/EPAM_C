@@ -20,6 +20,30 @@ namespace Task_05
             this.y = y;
             this.z = z;
         }
+        public bool Equals(Vector other)
+        {
+            //if (ReferenceEquals(null, other))
+            //    return false;
+            //if (ReferenceEquals(this, other))
+            //    return true;
+            //return double.Equals(x, other.x) && double.Equals(y, other.y) && double.Equals(z, other.z);
+            return Equals(x, other.x) && Equals(y, other.y) && Equals(z, other.z);
+        }
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Vector)obj);
+        }
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                //return ((x != null ? x.GetHashCode() : 0) * 397) ^ (y != null ? y.GetHashCode() : 0) ^ (z != null ? z.GetHashCode() : 0);
+                return HashCode.Combine(x, y, z);
+            }
+        }
         /// <summary>
         /// Length.
         /// </summary>
