@@ -23,7 +23,8 @@ namespace Task_05.test
             Vector vector1 = new Vector(3, 4, 5);
             Vector vector2 = new Vector(-3, -4, -5);
             Vector expectedVector = new Vector(0, 0, 0);
-            vector1.Equals(vector2);
+            Assert.AreEqual(true, (vector1 + vector2).Equals(expectedVector));
+            //vector1.Equals(vector2);
             //Assert.AreEqual(expectedVector.ToString(), (vector1 + vector2).ToString());
             //Assert.AreEqual(expectedVector, vector1 - vector2);
             //CollectionAssert.AreEqual((System.Collections.ICollection)expectedVector, (System.Collections.ICollection)(vector1 + vector2));
