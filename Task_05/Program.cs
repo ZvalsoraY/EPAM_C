@@ -37,19 +37,19 @@ namespace Task_05
             }
             else if (funSelection == 2)
             {
-                Console.WriteLine("Длина 1 вектора = {0}", vector1 + vector2);
+                Console.WriteLine("Сумма векторов = {0}", vector1 + vector2);
             }
             else if (funSelection == 3)
             {
-                Console.WriteLine("Длина 1 вектора = {0}", vector1 - vector2);
+                Console.WriteLine("Вектор 1 - вектор 2 = {0}", vector1 - vector2);
             }
             else if (funSelection == 4)
             {
-                Console.WriteLine("Длина 1 вектора = {0}", vector2 - vector1);
+                Console.WriteLine("Вектор 2 - вектор 1 = {0}", vector2 - vector1);
             }
             else if (funSelection == 5)
             {
-                Console.WriteLine("Длина 1 вектора = {0}", vector1 * vector2);
+                Console.WriteLine("Скалярное произведение векторов = {0}", vector1 * vector2);
             }
             else if (funSelection == 6)
             {
@@ -58,9 +58,9 @@ namespace Task_05
                 Console.Write("Введите номер вектора, котрый вы хотите умножить : ");
                 int vectorSelection = Convert.ToInt16(Console.ReadLine());
                 if (vectorSelection == 1)
-                    Console.WriteLine("Длина 1 вектора = {0}", vector1 * n);
+                    Console.WriteLine("Произведение 1 вектора на число = {0}", vector1 * n);
                 else if (vectorSelection == 2)
-                    Console.WriteLine("Длина 2 вектора = {0}", vector2 * n);
+                    Console.WriteLine("ДПроизведение 2 вектора на число = {0}", vector2 * n);
                 else Console.WriteLine("Было введено не корректное значение.");
             }
             else if (funSelection == 7)
