@@ -13,13 +13,22 @@ namespace Task_07
             this.column = column;
             this.matrixArray = matrixArray;
         }
-        // метод расширения для получения количества строк матрицы
+        /// <summary>
+        /// Matrix rows.
+        /// </summary>
+        /// <returns>
+        /// Counting the number of rows in a matrix.
+        /// </returns>
         public long RowsCount(double[,] matrix)
         {
             return matrix.GetUpperBound(0) + 1;
         }
-
-        // метод расширения для получения количества столбцов матрицы
+        /// <summary>
+        /// Matrix columns.
+        /// </summary>
+        /// <returns>
+        /// Counting the number of columns in a matrix.
+        /// </returns>
         public long ColumnsCount(double[,] matrix)
         {
             return matrix.GetUpperBound(1) + 1;
@@ -32,11 +41,9 @@ namespace Task_07
         /// </returns>
         public void OutputMatrix(double[,] matrix)
         {
-            long matrixRow = RowsCount(matrix);
-            long matrixCol = ColumnsCount(matrix);
-            for (long i = 0; i < matrixCol; i++)
+            for (long i = 0; i < ColumnsCount(matrix); i++)
             {
-                for (long j = 0; j < matrixRow; j++)
+                for (long j = 0; j < RowsCount(matrix); j++)
                 {
                     Console.Write("{0}\t", matrix[i, j]);
                 }
@@ -65,7 +72,12 @@ namespace Task_07
             }
             return sumMatrix;
         }
-        //Метод разности двух матриц
+        /// <summary>
+        /// Difference.
+        /// </summary>
+        /// <returns>
+        /// Difference of two matrices.
+        /// </returns>
         public double[,] SubMatrix(double[,] matrix1, double[,] matrix2)
         {
             long subMatrixRow = RowsCount(matrix1);
@@ -82,7 +94,12 @@ namespace Task_07
             }
             return subMatrix;
         }
-        //Метод умножения матрицы на заданное число
+        /// <summary>
+        /// k*matrix.
+        /// </summary>
+        /// <returns>
+        /// Multiplication of a matrix by a constant.
+        /// </returns>
         public double[,] FacMatrix(double[,] matrix, double factor) 
         {
             //long facMatrixRow = RowsCount(matrix);
@@ -97,62 +114,50 @@ namespace Task_07
             }
             return matrix;
         }
-        //перемножение матриц
-        // метод для умножения матриц
-        static long[,] MultiplicationMatrix(long[,] matrix1, long[,] matrix2)
+        /// <summary>
+        /// Matrix*matrix.
+        /// </summary>
+        /// <returns>
+        /// Matrix multiplication.
+        /// </returns>
+        public double[,] MultiplicationMatrix(double[,] matrix1, double[,] matrix2)
         {
-            if (matrix1.ColumnsCount() != matrix2.RowsCount())
+            long mulMatrixRow = RowsCount(matrix1);
+            long mulMatrixCol = ColumnsCount(matrix2);
+            //if (matrix1.ColumnsCount() != matrix2.RowsCount())
+            //{
+            //    throw new Exception("Умножение не возможно! Количество столбцов первой матрицы не равно количеству строк второй матрицы.");
+            //}
+            double[,] mulMatrix = new double[mulMatrixRow, mulMatrixCol];
+            for (long i = 0; i < mulMatrixRow; i++)
             {
-                throw new Exception("Умножение не возможно! Количество столбцов первой матрицы не равно количеству строк второй матрицы.");
-            }
-
-            var matrixC = new int[matrix1.RowsCount(), matrix2.ColumnsCount()];
-
-            for (var i = 0; i < matrix1.RowsCount(); i++)
-            {
-                for (var j = 0; j < matrix2.ColumnsCount(); j++)
+                for (long j = 0; j < mulMatrixCol; j++)
                 {
-                    matrixC[i, j] = 0;
+                    mulMatrix[i, j] = 0;
 
-                    for (var k = 0; k < matrix1.ColumnsCount(); k++)
+                    for (long k = 0; k < mulMatrixRow; k++)
                     {
-                        matrixC[i, j] += matrix1[i, k] * matrix2[k, j];
+                        mulMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
                     }
                 }
             }
-
-            return matrixC;
+            return mulMatrix;
         }
-
-        public double[,] TransposeMatrix(double[,] matrix) //Метод транспонирования матрицы
+        /// <summary>
+        /// Matrix equality.
+        /// </summary>
+        /// <returns>
+        /// Matrix equality check.
+        /// </returns>
+        public bool EqualMatrix(double[,] matrix1, double[,] matrix2) 
         {
-            double[,] tmpArray = new double[this.row, this.column];
-
-            for (long i = 0; i < this.column; i++)
-            {
-                for (long j = 0; j < this.row; j++)
-                {
-                    tmpArray[i, j] = array[j, i];
-                }
-            }
-
-            return tmpArray;
-        }
-        
-        
-
-        public bool EqualMatrix(int[,] array, int[,] array2) //Метод проверки равенства двух матриц
-        {
-            int i, j;
-
-            if (array.Length != array2.Length)
+            if (matrix1.Length != matrix2.Length)
                 return false;
-
-            for (i = 0; i < this.column; i++)
+            for (long i = 0; i < ColumnsCount(matrix1); i++)
             {
-                for (j = 0; j < this.row; j++)
+                for (long j = 0; j < RowsCount(matrix1); j++)
                 {
-                    if (array[i, j] != array2[i, j])
+                    if (matrix1[i, j] - matrix2[i, j] > 0.001)
                         return false;
                 }
             }
