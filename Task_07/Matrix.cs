@@ -2,7 +2,7 @@
 
 namespace Task_07
 {
-    class Matrix
+    public class Matrix
     {
         private long row;
         private long column;
@@ -11,8 +11,38 @@ namespace Task_07
         {
             this.row = row;
             this.column = column;
-            this.matrixArray = matrixArray;
+            this.matrixArray = InputMatrix(row, column);
         }
+        public double[,] InputMatrix(long rowInput, long columnInput ) //Метод заполнения матрицы
+        {
+            double[,] matrixInput = new double[rowInput, columnInput];
+
+            for (long i = 0; i < columnInput; i++)
+            {
+                for (long j = 0; j < rowInput; j++)
+                {
+                    Console.WriteLine("Введите [{0},{1}] элемент матрицы", i + 1, j + 1);
+                    matrixInput[i, j] = Convert.ToDouble(Console.ReadLine());
+                }
+            }
+
+            return matrixInput;
+        }
+
+        public double[,] GetEmpty(long rowEmpty, long columnEmpty)
+        {
+            double[,] emptyMatrix = new double[rowEmpty, columnEmpty];
+            for (long i = 0; i < columnEmpty; i++)
+            {
+                for (long j = 0; j < rowEmpty; j++)
+                {
+                    emptyMatrix[i, j] = 0;
+                }
+            }
+
+            return emptyMatrix;
+        }
+
         /// <summary>
         /// Matrix rows.
         /// </summary>
@@ -58,19 +88,28 @@ namespace Task_07
         /// </returns>
         public double[,] AddMatrix(double[,] matrix1, double[,] matrix2)
         {
-            long sumMatrixRow = RowsCount(matrix1);
-            long sumMatrixCol = ColumnsCount(matrix1);
-            double[,] sumMatrix = new double[sumMatrixRow, sumMatrixCol];
-            //if (matrix1.Length != matrix2.Length)
-            //    return null;
-            for (long i = 0; i < sumMatrixCol; i++)
+            try
             {
-                for (long j = 0; j < sumMatrixRow; j++)
+                long sumMatrixRow = RowsCount(matrix1);
+                long sumMatrixCol = ColumnsCount(matrix1);
+                double[,] sumMatrix = new double[sumMatrixRow, sumMatrixCol];
+                //if (matrix1.Length != matrix2.Length)
+                //    return null;
+                for (long i = 0; i < sumMatrixCol; i++)
                 {
-                    sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
+                    for (long j = 0; j < sumMatrixRow; j++)
+                    {
+                        sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
+                    }
                 }
+
+                return sumMatrix;
             }
-            return sumMatrix;
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw new Exception("You must supply an argument{RowsCount(matrix1)}");
+            }
         }
         /// <summary>
         /// Difference.
