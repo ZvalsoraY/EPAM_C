@@ -11,7 +11,13 @@ namespace Task_07.test
         {
             double[,] matrix1 = { { 1 } }; 
             double[,] matrix2 = { { 1 } };
-            Assert.AreEqual(AddMatrix(matrix1, matrix2), vector.Length(), 0.001, "correct");
+            double[,] expectedMatrix = { { 2 } };
+            //double[,] subMatrix = new double[subMatrixRow, subMatrixCol];
+            Matrix testAddMatrixTest = new Matrix(1,1, matrix1);
+            var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+            //Assert.AreEqual(expectedMatrix, testAddMatrixTest.AddMatrix(matrix1, matrix2),  "correct");
+            //Assert.AreEqual(expectedMatrix, resultMatrix);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
     }
 }

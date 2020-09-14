@@ -75,5 +75,20 @@ namespace Task_05.test
             string expectedString = "(3,4,5)";
             Assert.AreEqual(expectedString, vector.ToString(),"correct");
         }
+
+        [TestMethod()]
+        public void PossibleTriangleTest()
+        {
+            double a = 3;
+            double b = 4;
+            double c = 5;
+            Triangle triangle = new Triangle(a, b, c);
+            Assert.IsTrue(triangle.PossibleTriangle(a, b, c));
+        }
+
+        //private Exception exception;
+        [TestMethod()]
+        [ExpectedException(typeof(ArgumentException),
+            "Не существует треугольника с заданными параметрами")]
     }
 }

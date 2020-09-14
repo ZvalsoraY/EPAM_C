@@ -11,23 +11,24 @@ namespace Task_07
         {
             this.row = row;
             this.column = column;
-            this.matrixArray = InputMatrix(row, column);
+            this.matrixArray = matrixArray;
+            //this.matrixArray = InputMatrix(row, column);
         }
-        public double[,] InputMatrix(long rowInput, long columnInput ) //Метод заполнения матрицы
-        {
-            double[,] matrixInput = new double[rowInput, columnInput];
+        //public double[,] InputMatrix(long rowInput, long columnInput ) //Метод заполнения матрицы
+        //{
+        //    double[,] matrixInput = new double[rowInput, columnInput];
 
-            for (long i = 0; i < columnInput; i++)
-            {
-                for (long j = 0; j < rowInput; j++)
-                {
-                    Console.WriteLine("Введите [{0},{1}] элемент матрицы", i + 1, j + 1);
-                    matrixInput[i, j] = Convert.ToDouble(Console.ReadLine());
-                }
-            }
+        //    for (long i = 0; i < columnInput; i++)
+        //    {
+        //        for (long j = 0; j < rowInput; j++)
+        //        {
+        //            Console.WriteLine("Введите [{0},{1}] элемент матрицы", i + 1, j + 1);
+        //            matrixInput[i, j] = Convert.ToDouble(Console.ReadLine());
+        //        }
+        //    }
 
-            return matrixInput;
-        }
+        //    return matrixInput;
+        //}
 
         public double[,] GetEmpty(long rowEmpty, long columnEmpty)
         {
@@ -108,7 +109,7 @@ namespace Task_07
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                throw new Exception("You must supply an argument{RowsCount(matrix1)}");
+                throw new Exception($"You must supply an argument{RowsCount(matrix1)}");
             }
         }
         /// <summary>
