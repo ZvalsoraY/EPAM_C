@@ -28,10 +28,11 @@ namespace Task_07
             //double[,] matrixEnter = InputArray(rowEnter, colEnter);
 
             double[,] matrixEnter = { { 1 } };
-            double[,] matrix1 = { { 1 } };
+            double[,] matrix1 = { { 1, 1, 1 } };
             double[,] matrix2 = { { 1, 1 } };
             Matrix addMatrix = new Matrix(1, 1, matrixEnter);
             var resultMatrix = addMatrix.AddMatrix(matrix1, matrix2);
+            Console.WriteLine(resultMatrix.GetValue(0,0));
 
         }
     }

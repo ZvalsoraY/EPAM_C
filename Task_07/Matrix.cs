@@ -89,14 +89,18 @@ namespace Task_07
         /// </returns>
         public double[,] AddMatrix(double[,] matrix1, double[,] matrix2)
         {
-            try
-            {
+            //try
+            //{
                 long sumMatrixRow = RowsCount(matrix1);
                 long sumMatrixCol = ColumnsCount(matrix1);
                 double[,] sumMatrix = new double[sumMatrixRow, sumMatrixCol];
-                //if (matrix1.Length != matrix2.Length)
-                //    return null;
-                for (long i = 0; i < sumMatrixCol; i++)
+                if (matrix1.Length != matrix2.Length)
+                {
+                    throw new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}");
+                }
+
+            //    return null;
+            for (long i = 0; i < sumMatrixCol; i++)
                 {
                     for (long j = 0; j < sumMatrixRow; j++)
                     {
@@ -105,12 +109,20 @@ namespace Task_07
                 }
 
                 return sumMatrix;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-                throw new Exception($"You must supply an argument{RowsCount(matrix1)}");
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    //Console.WriteLine(ex.Message);
+            //    throw new Exception($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}" +
+            //                        $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)} ");
+            //}
+            //catch (Exception ex)
+            //{
+            //    ArgumentException argEx = new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}" +
+            //                                                    $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)} );
+            //    //throw argEx;
+            //}
+
         }
         /// <summary>
         /// Difference.
