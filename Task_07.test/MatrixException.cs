@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Task_07.test
 {
-    [Serializable]
+    //[Serializable]
     public class MatrixException : Exception
     public string UserNotFoundName
     {

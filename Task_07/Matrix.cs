@@ -96,7 +96,12 @@ namespace Task_07
                 double[,] sumMatrix = new double[sumMatrixRow, sumMatrixCol];
                 if (matrix1.Length != matrix2.Length)
                 {
-                    throw new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}");
+                    //ArgumentException argEx = new ArgumentOutOfRangeException("param1", "Parameter param1 too large.");
+                ArgumentException argEx = new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}",
+                    $"{RowsCount(matrix1)}");
+                throw argEx;
+                //throw new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)} " +
+                //                                $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)}");
                 }
 
             //    return null;
