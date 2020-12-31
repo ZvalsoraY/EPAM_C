@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace Task_07
 {
@@ -44,6 +45,7 @@ namespace Task_07
             return emptyMatrix;
         }
 
+       
         /// <summary>
         /// Matrix rows.
         /// </summary>
@@ -65,7 +67,24 @@ namespace Task_07
             return matrix.GetUpperBound(1) + 1;
         }
         /// <summary>
-        /// Output matrix.
+        /// Matrix as a string.
+        /// </summary>
+        /// <returns>
+        /// Matrix to string.
+        /// </returns>
+        public string MatrixAsString(double[,] matrix)
+        {
+            string s = "";
+            for (int i = 0; i < ColumnsCount(matrix); i++)
+            {
+                for (int j = 0; j < RowsCount(matrix); j++)
+                    s += matrix[i, j].ToString("F3").PadLeft(8) + " ";
+                s += Environment.NewLine;
+            }
+            return s;
+        }
+        /// <summary>
+        /// Print matrix.
         /// </summary>
         /// <returns>
         /// Outputting the matrix to the console.
@@ -179,46 +198,57 @@ namespace Task_07
         /// </returns>
         public double[,] MultiplicationMatrix(double[,] matrix1, double[,] matrix2)
         {
-            long mulMatrixRow = RowsCount(matrix1);
-            long mulMatrixCol = ColumnsCount(matrix2);
-            //if (matrix1.ColumnsCount() != matrix2.RowsCount())
-            //{
-            //    throw new Exception("Умножение не возможно! Количество столбцов первой матрицы не равно количеству строк второй матрицы.");
-            //}
-            double[,] mulMatrix = new double[mulMatrixRow, mulMatrixCol];
-            for (long i = 0; i < mulMatrixRow; i++)
+            long mulMatrixRow1 = RowsCount(matrix1);
+            long mulMatrixCol2 = ColumnsCount(matrix2);
+            if (mulMatrixRow1 != mulMatrixCol2)
             {
-                for (long j = 0; j < mulMatrixCol; j++)
-                {
-                    mulMatrix[i, j] = 0;
-
-                    for (long k = 0; k < mulMatrixRow; k++)
-                    {
-                        mulMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
-                    }
-                }
+                throw new Exception("Non-conformable matrices in MultiplicationMatrix.");
             }
+            double[,] mulMatrix = new double[mulMatrixRow1, mulMatrixCol2];
+            Parallel.For(0, mulMatrixRow1, i =>
+            {
+                for (long j = 0; j < mulMatrixCol2; ++j)
+                    for (long k = 0; k < mulMatrixRow1; ++k)
+                        mulMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
+            }
+            );
             return mulMatrix;
+            //for (long i = 0; i < mulMatrixRow1; i++)
+            //{
+            //    for (long j = 0; j < mulMatrixCol2; j++)
+            //    {
+            //        //mulMatrix[i, j] = 0;
+            //        for (long k = 0; k < mulMatrixRow1; k++)
+            //        {
+            //            mulMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
+            //        }
+            //    }
+            //}
+            
         }
+
+        
         /// <summary>
         /// Matrix equality.
         /// </summary>
         /// <returns>
         /// Matrix equality check.
         /// </returns>
-        public bool EqualMatrix(double[,] matrix1, double[,] matrix2) 
+        public bool EqualMatrix(double[,] matrix1, double[,] matrix2, double epsilon = 0.001) 
         {
-            if (matrix1.Length != matrix2.Length)
-                return false;
+
+            //if (matrix1.Length != matrix2.Length)
+            //    return false;
             for (long i = 0; i < ColumnsCount(matrix1); i++)
             {
                 for (long j = 0; j < RowsCount(matrix1); j++)
                 {
-                    if (matrix1[i, j] - matrix2[i, j] > 0.001)
+                    if (matrix1[i, j] - matrix2[i, j] > epsilon)
                         return false;
                 }
             }
             return true;
         }
+        
     }
 }
