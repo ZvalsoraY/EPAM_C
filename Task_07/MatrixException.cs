@@ -16,14 +16,18 @@ namespace Task_07
   [Serializable]
     public class MatrixException : ArgumentException
     {
-        public long RowInfo { get; }
-        public long ColumnInfo { get; }
+        public long RowInfoMatrix1 { get; }
+        public long ColumnInfoMatrix1 { get; }
+        public long RowInfoMatrix2 { get; }
+        public long ColumnInfoMatrix2 { get; }
         //public int Value { get; }
-        public MatrixException(string message, long rowInfo, long columnInfo)
+        public MatrixException(string message, long rowInfoMatrix1, long columnInfoMatrix1, long rowInfoMatrix2, long columnInfoMatrix2)
             : base(message)
         {
-            RowInfo = rowInfo;
-            ColumnInfo = columnInfo;
+            RowInfoMatrix1 = rowInfoMatrix1;
+            ColumnInfoMatrix1 = columnInfoMatrix1;
+            RowInfoMatrix2 = rowInfoMatrix2;
+            ColumnInfoMatrix2 = columnInfoMatrix2;
         }
 
         //private string _userNotFoundName;

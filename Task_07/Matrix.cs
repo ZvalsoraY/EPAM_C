@@ -108,45 +108,26 @@ namespace Task_07
         /// </returns>
         public double[,] AddMatrix(double[,] matrix1, double[,] matrix2)
         {
-            //try
-            //{
-                long sumMatrixRow = RowsCount(matrix1);
-                long sumMatrixCol = ColumnsCount(matrix1);
-                double[,] sumMatrix = new double[sumMatrixRow, sumMatrixCol];
-                if (matrix1.Length != matrix2.Length)
+            long matrix1Row = RowsCount(matrix1);
+            long matrix1Col = ColumnsCount(matrix1);
+            long matrix2Row = RowsCount(matrix2);
+            long matrix2Col = ColumnsCount(matrix2);
+            double[,] sumMatrix = new double[matrix1Row, matrix1Col];
+            if (matrix1Row != matrix1Col || matrix2Row != matrix2Col)
+            {         
+                throw new MatrixException($"The number of rows and columns of the first matrix {matrix1Row}, {matrix1Col}" +
+                    $" and the second {matrix2Row}, {matrix2Col}",
+                    matrix1Row, matrix1Col, matrix2Row, matrix2Col);
+            }
+            else
+            for (long i = 0; i < matrix1Col; i++)
+            {
+                for (long j = 0; j < matrix1Row; j++)
                 {
-                    //ArgumentException argEx = new ArgumentOutOfRangeException("param1", "Parameter param1 too large.");
-                ArgumentException argEx = new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}",
-                    $"{RowsCount(matrix1)}");
-                throw argEx;
-                //throw new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)} " +
-                //                                $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)}");
+                    sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
                 }
-
-            //    return null;
-            for (long i = 0; i < sumMatrixCol; i++)
-                {
-                    for (long j = 0; j < sumMatrixRow; j++)
-                    {
-                        sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
-                    }
-                }
-
-                return sumMatrix;
-            //}
-            //catch (Exception ex)
-            //{
-            //    //Console.WriteLine(ex.Message);
-            //    throw new Exception($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}" +
-            //                        $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)} ");
-            //}
-            //catch (Exception ex)
-            //{
-            //    ArgumentException argEx = new ArgumentException($"First matrix size: {RowsCount(matrix1)}, {ColumnsCount(matrix1)}" +
-            //                                                    $"Second matrix size: {RowsCount(matrix2)}, {ColumnsCount(matrix2)} );
-            //    //throw argEx;
-            //}
-
+            }
+            return sumMatrix;
         }
         /// <summary>
         /// Difference.
