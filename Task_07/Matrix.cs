@@ -113,16 +113,17 @@ namespace Task_07
             long matrix2Row = RowsCount(matrix2);
             long matrix2Col = ColumnsCount(matrix2);
             double[,] sumMatrix = new double[matrix1Row, matrix1Col];
-            if (matrix1Row != matrix1Col || matrix2Row != matrix2Col)
+            //double[,] sumMatrix = new double[matrix1Col, matrix1Row];
+            if (matrix1Row != matrix2Row || matrix1Col != matrix2Col)
             {         
                 throw new MatrixException($"The number of rows and columns of the first matrix {matrix1Row}, {matrix1Col}" +
                     $" and the second {matrix2Row}, {matrix2Col}",
                     matrix1Row, matrix1Col, matrix2Row, matrix2Col);
             }
             else
-            for (long i = 0; i < matrix1Col; i++)
+            for (long i = 0; i < matrix1Row; i++)
             {
-                for (long j = 0; j < matrix1Row; j++)
+                for (long j = 0; j < matrix1Col; j++)
                 {
                     sumMatrix[i, j] = matrix1[i, j] + matrix2[i, j];
                 }
