@@ -27,13 +27,22 @@ namespace Task_07
             //long colEnter = Convert.ToInt64(Console.ReadLine());
             //double[,] matrixEnter = InputArray(rowEnter, colEnter);
 
-            double[,] matrixEnter = { { 1 } };
+            double[,] matrixEnter = { { 5 } };
             double[,] matrix1 = { { 1, 1, 1 } };
             double[,] matrix2 = { { 1, 1, 1 } };
 
             Matrix addMatrix = new Matrix(1, 1, matrixEnter);
             var resultMatrix = addMatrix.AddMatrix(matrix1, matrix2);
+            var subMatrix = addMatrix.SubMatrix(matrix1, matrix2);
+            var facMatrix = addMatrix.FacMatrix(matrix1, 5);
+            var mulMatrix = addMatrix.MultiplicationMatrix(matrixEnter, matrix2);
+            var strMatrix = addMatrix.MatrixAsString(matrix2);
+            Console.WriteLine(strMatrix);
+            var equalMatrix = addMatrix.EqualMatrix(matrix2, matrix2);
+            Console.WriteLine(equalMatrix);
 
+            var emptyMatrix = addMatrix.GetEmpty(5, 2);
+            
             //Console.WriteLine(addMatrix);
             //foreach (long i in addMatrix) Console.Write($"{i} ");
             Console.WriteLine();

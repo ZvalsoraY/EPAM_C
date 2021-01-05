@@ -20,22 +20,52 @@ namespace Task_07.test
             //Assert.AreEqual(expectedMatrix, resultMatrix);
             CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
-        [TestMethod()]
-        //[ExpectedException(typeof(ArgumentException),
-         //   "Не существует треугольника с заданными параметрами")]
-        [ExpectedExceptionWithMessage(typeof(ArgumentOutOfRangeException), "port", true)]
+        [TestMethod]
+        public void AddMatrixTestPos2()
+        {
+            double[,] matrix1 = { { 1, 1, 1 } };
+            double[,] matrix2 = { { 1, 1, 1 } };
+            double[,] expectedMatrix = { { 2, 2, 2 } };
+            Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
+            var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+        }
+        [TestMethod]
+        public void AddMatrixTestPos3()
+        {
+            double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
+            double[,] matrix2 = { { 1 }, { 1 }, { 1 } };
+            double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
+            Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
+            var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+        }
+        [TestMethod]
         public void AddMatrixTestNeg()
         {
             double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
-            double[,] matrix2 = { { 1, 2 } };
-            double[,] expectedMatrix = { { 2 } };
+            double[,] matrix2 = { { 1 }, { 1 }, { 1 } };
+            double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
             Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
             var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
-            CollectionAssert.AreEqual("E");
-            //CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
-        
-        
+        //[TestMethod()]
+        ////[ExpectedException(typeof(ArgumentException),
+        // //   "Не существует треугольника с заданными параметрами")]
+        ////[ExpectedExceptionWithMessage(typeof(ArgumentOutOfRangeException), "port", true)]
+        //public void AddMatrixTestNeg()
+        //{
+        //    double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
+        //    double[,] matrix2 = { { 1, 2 } };
+        //    double[,] expectedMatrix = { { 2 } };
+        //    Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
+        //    var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+        //    CollectionAssert.AreEqual(true, resultMatrix);
+        //    //CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+        //}
+
+
         //[TestMethod()]
         //public void PossibleTriangleTest()
         //{
