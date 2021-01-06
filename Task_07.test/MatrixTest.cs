@@ -41,14 +41,14 @@ namespace Task_07.test
             CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
         [TestMethod]
+        [ExpectedException(typeof(MatrixException))]
         public void AddMatrixTestNeg()
         {
             double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
-            double[,] matrix2 = { { 1 }, { 1 }, { 1 } };
+            double[,] matrix2 = { { 1 }, { 1 } };
             double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
             Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
             var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
-            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
         //[TestMethod()]
         ////[ExpectedException(typeof(ArgumentException),
