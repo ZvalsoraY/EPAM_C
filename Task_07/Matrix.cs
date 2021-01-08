@@ -30,7 +30,12 @@ namespace Task_07
 
         //    return matrixInput;
         //}
-
+        /// <summary>
+        /// Empty matrix.
+        /// </summary>
+        /// <returns>
+        /// Empty matrix return.
+        /// </returns>
         public double[,] GetEmpty(long rowEmpty, long columnEmpty)
         {
             double[,] emptyMatrix = new double[rowEmpty, columnEmpty];
@@ -197,7 +202,7 @@ namespace Task_07
             Parallel.For(0, mulMatrixRow1, i =>
             {
                 for (long j = 0; j < mulMatrixCol2; ++j)
-                    for (long k = 0; k < mulMatrixRow1; ++k)
+                    for (long k = 0; k < mulMatrixCol1; ++k)
                         mulMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
             }
             );
@@ -211,7 +216,7 @@ namespace Task_07
         /// <returns>
         /// Matrix equality check.
         /// </returns>
-        public bool EqualMatrix(double[,] matrix1, double[,] matrix2, double epsilon = 0.001) 
+        public bool EqualMatrix(double[,] matrix1, double[,] matrix2, double epsilon = 0.0001) 
         {
             long matrix1Row = RowsCount(matrix1); long matrix1Col = ColumnsCount(matrix1);
             long matrix2Row = RowsCount(matrix2); long matrix2Col = ColumnsCount(matrix2);
@@ -224,7 +229,7 @@ namespace Task_07
             {
                 for (long j = 0; j < matrix1Col; j++)
                 {
-                    if (matrix1[i, j] - matrix2[i, j] > epsilon)
+                    if (Math.Abs(matrix1[i, j] - matrix2[i, j]) > epsilon)
                         return false;
                 }
             }

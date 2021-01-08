@@ -40,45 +40,97 @@ namespace Task_07.test
             var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
             CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
         }
+        //[TestMethod]
+        //[ExpectedException(typeof(MatrixException))]
+        //public void AddMatrixTestNeg()
+        //{
+        //    double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
+        //    double[,] matrix2 = { { 1 }, { 1 } };
+        //    double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
+        //    Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
+        //    var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+        //}
         [TestMethod]
         [ExpectedException(typeof(MatrixException))]
         public void AddMatrixTestNeg()
         {
-            double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
-            double[,] matrix2 = { { 1 }, { 1 } };
-            double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
-            Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
-            var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+            try
+            {
+                double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
+                double[,] matrix2 = { { 1 }, { 1 } };
+                double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
+                Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
+                var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
+            }
+            catch (MatrixException ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("The number of rows and columns of the first matrix 3, 1 and the second 2, 1"));
+                throw;
+            }
         }
-        //[TestMethod()]
-        ////[ExpectedException(typeof(ArgumentException),
-        // //   "Не существует треугольника с заданными параметрами")]
-        ////[ExpectedExceptionWithMessage(typeof(ArgumentOutOfRangeException), "port", true)]
-        //public void AddMatrixTestNeg()
-        //{
-        //    double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
-        //    double[,] matrix2 = { { 1, 2 } };
-        //    double[,] expectedMatrix = { { 2 } };
-        //    Matrix testAddMatrixTest = new Matrix(1, 1, matrix1);
-        //    var resultMatrix = testAddMatrixTest.AddMatrix(matrix1, matrix2);
-        //    CollectionAssert.AreEqual(true, resultMatrix);
-        //    //CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
-        //}
 
+        [TestMethod]
+        public void MultiplicationMatrixTestPos()
+        {
+            double[,] matrix1 = { { 1, 1, 1 } };
+            double[,] matrix2 = { { 1 }, { 1 }, { 1 } };
+            double[,] expectedMatrix = { { 3 } };
+            Matrix testMultiplicationMatrixTest = new Matrix(1, 1, matrix1);
+            var resultMatrix = testMultiplicationMatrixTest.MultiplicationMatrix(matrix1, matrix2);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+        }
+        [TestMethod]
+        public void MultiplicationMatrixTestPos1()
+        {
+            double[,] matrix1 = { { 1, 2, 3 }, { 4, 5, 6} };
+            double[,] matrix2 = { { 7, 8, 9, 10 }, { 11, 12, 13, 14 }, { 15, 16, 17, 18 } };
+            double[,] expectedMatrix = { { 74, 80, 86, 92}, { 173, 188, 203, 218} };
+            Matrix testMultiplicationMatrixTest = new Matrix(1, 1, matrix1);
+            var resultMatrix = testMultiplicationMatrixTest.MultiplicationMatrix(matrix1, matrix2);
+            CollectionAssert.AreEqual(expectedMatrix, resultMatrix);
+        }
 
-        //[TestMethod()]
-        //public void PossibleTriangleTest()
-        //{
-        //    double a = 3;
-        //    double b = 4;
-        //    double c = 5;
-        //    Triangle triangle = new Triangle(a, b, c);
-        //    Assert.IsTrue(triangle.PossibleTriangle(a, b, c));
-        //}
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void MultiplicationMatrixTestNeg()
+        {
+            try
+            {
+                double[,] matrix1 = { { 1 }, { 1 }, { 1 } };
+                double[,] matrix2 = { { 1 }, { 1 } };
+                double[,] expectedMatrix = { { 2 }, { 2 }, { 2 } };
+                Matrix testMultiplicationMatrixTest = new Matrix(1, 1, matrix1);
+                var resultMatrix = testMultiplicationMatrixTest.MultiplicationMatrix(matrix1, matrix2);
+            }
+            catch (Exception ex)
+            {
+                Assert.IsTrue(ex.Message.Contains("Non-conformable matrices in MultiplicationMatrix."));
+                throw;
+            }
+        }
+        [TestMethod]
+        public void EqualMatrixTestPos()
+        {
+            double[,] matrix1 = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            double[,] matrix2 = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            
+            Matrix testMultiplicationMatrixTest = new Matrix(1, 1, matrix1);
+            var resultEqualTest = testMultiplicationMatrixTest.EqualMatrix(matrix1, matrix2);
+            Assert.IsTrue(resultEqualTest);
+            //CollectionAssert.AreEqual(true,)
+            //CollectionAssert.AreEqual(true, result);
+        }
+        [TestMethod]
+        public void EqualMatrixTestNeg()
+        {
+            double[,] matrix1 = { { 1, 1, 1 }, { 1, 1, 1 }, { 1, 1, 1 } };
+            double[,] matrix2 = { { 1, 1, 1 }, { 1, 2, 1 }, { 1, 1, 1 } };
 
-        ////private Exception exception;
-        //[TestMethod()]
-        //[ExpectedException(typeof(ArgumentException),
-        //    "Не существует треугольника с заданными параметрами")]
+            Matrix testMultiplicationMatrixTest = new Matrix(1, 1, matrix1);
+            var resultEqualTest = testMultiplicationMatrixTest.EqualMatrix(matrix1, matrix2);
+            Assert.IsFalse(resultEqualTest);
+            //CollectionAssert.AreEqual(true,)
+            //CollectionAssert.AreEqual(true, result);
+        }
     }
 }
