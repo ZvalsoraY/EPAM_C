@@ -7,25 +7,9 @@ namespace Task_08
 {
     public class Timer
     {
-        delegate void Message(); // 1. Объявляем делегат
-
-        static void Main(string[] args)
-        {
-            Message mes; // 2. Создаем переменную делегата
-            if (DateTime.Now.Hour < 12)
-            {
-                mes = GoodMorning; // 3. Присваиваем этой переменной адрес метода
-            }
-            else
-            {
-                mes = GoodEvening;
-            }
-            mes(); // 4. Вызываем метод
-            Console.ReadKey();
-        }
-
-
-        delegate int TimerDelegate(int secondsToStop, string timerName = "no name timer");
+        public delegate void TimerHandler(object sender, TimerEventArgs e);
+        //public delegate void TimerHandler(string timerName, int secondsToStop); //1. Объявляем делегат
+        public event TimerHandler Notify; // 1.Определение события
 
         private int secondsToStop;
         private string timerName;
@@ -36,9 +20,14 @@ namespace Task_08
             this.timerName = timerName;
         }
 
-        public void StartTimer()
+        public void StartTimer(int secondsToStop, string timerName)
         {
+            
             Thread.Sleep(secondsToStop * 1000);
+            Notify?.Invoke(this, new TimerEventArgs($"The timer has expired. The name of the timer is {timerName}", secondsToStop));
+            //Notify?.Invoke($"The timer has expired.{secondsToStop}", timerName);
+            //Notify?.Invoke($"The timer has expired. The name of the timer is {timerName}");
+
         }
     }
 }
